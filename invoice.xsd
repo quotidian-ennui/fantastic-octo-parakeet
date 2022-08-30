@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns="invoice" 
+	targetNamespace="invoice"
+  	elementFormDefault="qualified">
+  <xs:element name="invoice">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="invnumber"/>
+        <xs:element ref="invdate"/>
+        <xs:element ref="customer"/>
+        <xs:element ref="items"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="invnumber" type="xs:integer"/>
+  <xs:element name="invdate" type="xs:date"/>
+  <xs:element name="customer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+        <xs:element ref="street"/>
+        <xs:element ref="city"/>
+        <xs:element ref="state"/>
+        <xs:element ref="zip"/>
+        <xs:element ref="phone"/>
+        <xs:element ref="fax"/>
+        <xs:element ref="attn"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="name" type="xs:string"/>
+  <xs:element name="street" type="xs:string"/>
+  <xs:element name="city" type="xs:string"/>
+  <xs:element name="state" type="xs:string"/>
+  <xs:element name="zip" type="xs:integer"/>
+  <xs:element name="phone" type="xs:string"/>
+  <xs:element name="fax">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="attn" type="xs:string"/>
+  <xs:element name="items">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="item"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="item">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="date"/>
+        <xs:element ref="description"/>
+        <xs:element ref="quantity"/>
+        <xs:element ref="unitprice"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="date" type="xs:date"/>
+  <xs:element name="description" type="xs:string"/>
+  <xs:element name="quantity" type="xs:integer"/>
+  <xs:element name="unitprice" type="xs:decimal"/>
+</xs:schema>

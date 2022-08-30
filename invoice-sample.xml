@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<invoice xmlns="invoice"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="invoice invoice.xsd">
+    <invnumber>10001</invnumber>
+    <invdate>2001-04-19</invdate>
+    <customer>
+    	<name>Coyote Group, LLC</name>
+    	<street>3108 Suspendisse Ave</street>
+    	<city>Berlin</city>
+    	<state>New South Wales</state>
+    	<zip>37337</zip>
+    	<phone>1-987-649-5599</phone>
+    	<fax></fax>
+    	<attn>Wile E. Coyote</attn>
+    </customer>
+    <items>
+        <item>
+            <date>2001-04-01</date>
+            <description>Anvil</description>
+            <quantity>1</quantity>
+            <unitprice>50.00</unitprice>
+        </item>
+        <item>
+            <date>2001-04-04</date>
+            <description>Stick of TNT</description>
+            <quantity>6</quantity>
+            <unitprice>10.00</unitprice>
+        </item>
+        <item>
+            <date>2001-04-10</date>
+            <description>Black Tunnel Spot</description>
+            <quantity>3</quantity>
+            <unitprice>99.00</unitprice>
+        </item>
+    </items>
+</invoice>
