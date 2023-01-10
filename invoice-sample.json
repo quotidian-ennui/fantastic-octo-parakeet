@@ -1,0 +1,33 @@
+{
+	"invoice" : {
+		"invnumber" : "10001",
+		"invdate" : "2001-04-19",
+		"customer" : {
+			"name" : "Coyote Group, LLC",
+			"street" : "3108 Suspendisse Ave",
+			"city" : "Berlin",
+			"state" : "New South Wales",
+			"zip" : "37337",
+			"phone" : "1-987-649-5599",
+			"attn" : "Wile E. Coyote"
+		},
+		"items" : {
+			"item" : [ {
+				"date" : "2001-04-01",
+				"description" : "Anvil",
+				"quantity" : "1",
+				"unitprice" : "50.00"
+			}, {
+				"date" : "2001-04-04",
+				"description" : "Stick of TNT",
+				"quantity" : "6",
+				"unitprice" : "10.00"
+			}, {
+				"date" : "2001-04-10",
+				"description" : "Black Tunnel Spot",
+				"quantity" : "3",
+				"unitprice" : "99.00"
+			} ]
+		}
+	}
+}

@@ -1,0 +1,96 @@
+[
+  {
+    "operation": "shift",
+    "spec": {
+      "invoice": {
+        "invdate": "Invoice.Date",
+        "invnumber": "Invoice.Number",
+        "#Acme Corporation": "Invoice.From.Company",
+        "#551-3307 Odio St., Iligan Cagayan Valley 58528": "Invoice.From.Address",
+        "customer": {
+          "attn": "Invoice.BillTo.Name",
+          "name": "Invoice.BillTo.Company",
+          "phone": "Invoice.BillTo.Phone",
+          "street": "tmp_addr_1",
+          "city": "tmp_addr_2",
+          "state": "tmp_addr_3",
+          "zip": "tmp_addr_4"
+        },
+        "items": {
+          "item": {
+            "*": {
+              "date": "Invoice.InvoiceLine[&1].Date",
+              "description": "Invoice.InvoiceLine[&1].Description",
+              "quantity": "Invoice.InvoiceLine[&1].Quantity",
+              "unitprice": "Invoice.InvoiceLine[&1].tmp_unitprice"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "operation": "modify-default-beta",
+    "spec": {
+      "Invoice": {
+        "BillTo": {
+          "Address": "=concat(@(3,tmp_addr_1),', ',@(3,tmp_addr_2),', ',@(3,tmp_addr_3),', ',@(3,tmp_addr_4))"
+        },
+        "InvoiceLine": {
+          "*": {
+            "tmp_quantity_inverse": "=divide(1,@(1,Quantity))",
+            "tmp_price": "=divideAndRound(2,@(1,tmp_unitprice),@(1,tmp_quantity_inverse))",
+            "tmp_line_total": "=divideAndRound(2,@(1,tmp_unitprice),@(1,tmp_quantity_inverse))"
+          }
+        }
+      }
+    }
+  },
+  {
+    "operation": "shift",
+    "spec": {
+      "Invoice": {
+        "*": "Invoice.&",
+        "InvoiceLine": {
+          "*": {
+            "Date": "Invoice.InvoiceLine[&1].Date",
+            "Description": "Invoice.InvoiceLine[&1].Description",
+            "Quantity": "Invoice.InvoiceLine[&1].Quantity",
+            "tmp_unitprice": "Invoice.InvoiceLine[&1].tmp_unitprice",
+            "tmp_price": "Invoice.InvoiceLine[&1].tmp_price",
+            "tmp_line_total": "tmp_invoice_line_totals[]"
+          }
+        }
+      }
+    }
+  },
+  {
+    "operation": "modify-default-beta",
+    "spec": {
+      "Invoice": {
+        "InvoiceLine": {
+          "*": {
+            "UnitPrice": "=concat('$',@(1,tmp_unitprice))",
+            "Total": "=concat('$',@(1,tmp_price))"
+          }
+        },
+        "tmp_invoice_total": "=doubleSum(@(2,tmp_invoice_line_totals))",
+        "InvoiceTotal": "=concat('$',@(1,tmp_invoice_total))"
+      }
+    }
+  },
+  {
+    "operation": "remove",
+    "spec": {
+      "tmp_*": "",
+      "Invoice": {
+        "InvoiceLine": {
+          "*": {
+            "tmp_*": ""
+          }
+        },
+        "tmp_*": ""
+      }
+    }
+  }
+]

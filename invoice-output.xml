@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Invoice>
+   <Date>19 April 2001</Date>
+   <Number>10001</Number>
+   <From>
+      <Company>Acme Corporation</Company>
+      <Address>551-3307 Odio St., Iligan Cagayan Valley 58528</Address>
+   </From>
+   <BillTo>
+      <Name>Wile E. Coyote</Name>
+      <Company>Coyote Group, LLC</Company>
+      <Address>3108 Suspendisse Ave, Berlin, New South Wales 37337</Address>
+      <Phone>1-987-649-5599</Phone>
+   </BillTo>
+   <InvoiceLine>
+      <Date>1 April 2001</Date>
+      <Description>Anvil</Description>
+      <Quantity>1</Quantity>
+      <UnitPrice>$50.00</UnitPrice>
+      <Total>$50.00</Total>
+   </InvoiceLine>
+   <InvoiceLine>
+      <Date>4 April 2001</Date>
+      <Description>Stick of TNT</Description>
+      <Quantity>6</Quantity>
+      <UnitPrice>$10.00</UnitPrice>
+      <Total>$60.00</Total>
+   </InvoiceLine>
+   <InvoiceLine>
+      <Date>10 April 2001</Date>
+      <Description>Black Tunnel Spot</Description>
+      <Quantity>3</Quantity>
+      <UnitPrice>$99.00</UnitPrice>
+      <Total>$297.00</Total>
+   </InvoiceLine>
+   <InvoiceTotal>$407.00</InvoiceTotal>
+</Invoice>
