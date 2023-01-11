@@ -1,0 +1,30 @@
+
+let totals = [ for (.invoice.items.item) number(.unitprice) * number(.quantity) ]
+{
+    "Invoice": {
+      "Date": format-time(parse-time(.invoice.invdate, "yyyy-MM-dd"), "dd MMMM yyyy"),
+      "Number": .invoice.invnumber,
+      "From": {
+        "Company": "Acme Corporation",
+        "Address": "551-3307 Odio St., Iligan Cagayan Valley 58528"
+      },
+      "BillTo": {
+        "Name": .invoice.customer.attn,
+        "Company": .invoice.customer.name,
+        "Address": .invoice.customer.street + ", " + .invoice.customer.city + "," + .invoice.customer.state + ", " +  .invoice.customer.zip,
+        if (.invoice.customer.fax) "Fax": .invoice.customer.fax,
+        "Phone": .invoice.customer.phone
+      },
+      "InvoiceLine": [ for (.invoice.items.item)
+        {
+          "Date": format-time(parse-time(.date, "yyyy-MM-dd"), "dd MMMM yyyy"),
+          "Description": .description,
+          "Quantity": .quantity,
+          "UnitPrice": "$" + .unitprice,
+          "Total": "$" + number(.unitprice) * number(.quantity)
+        }
+      ],
+      "InvoiceTotal" : "$" + sum($totals)
+    }
+}
+
