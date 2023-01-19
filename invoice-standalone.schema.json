@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "type": "object",
+  "title": "A simple invoice",
+  "description": "A simple invoice",
+  "properties": {
+    "invoice": {
+      "type": "object",
+      "properties": {
+        "invnumber": { "type": "string"  },
+        "invdate": { "type": "string",  "format": "date" },
+        "customer": {
+          "type": "object",
+          "required": [ "attn", "name", "street", "city", "state", "zip", "phone" ],
+          "properties": {
+            "name": { "type": "string"  },
+            "street": {  "type": "string"  },
+            "city": { "type": "string"  },
+            "state": { "type": "string" },
+            "zip": { "type": "string"  },
+            "phone": { "type": "string"  },
+            "fax": { "type": "string" },
+            "attn": { "type": "string" }
+          }
+        },
+        "items": {
+          "type": "object",
+          "required": [ "item" ],
+          "properties": {
+            "item": {
+              "type": "array",
+              "minItems": 1,
+              "items": [
+                {
+                  "type": "object",
+                  "required": [ "date", "description", "quantity", "unitprice" ],
+                  "properties": {
+                    "date": { "type": "string", "format": "date"},
+                    "description": { "type": "string" },
+                    "quantity": { "type": "string" },
+                    "unitprice": { "type": "string" }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "required": [ "invnumber", "invdate", "customer", "items" ]
+    }
+  },
+  "required": [ "invoice" ]
+}
